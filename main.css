@@ -1,0 +1,12 @@
+/* ../../snippets/new-table-element.css */
+td span {
+  color: #ff0000;
+  padding-inline-start: 10px;
+}
+td {
+  padding: 0 !important;
+}
+td img {
+  display: block;
+}
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc25pcHBldHMvbmV3LXRhYmxlLWVsZW1lbnQuY3NzIl0sCiAgInNvdXJjZXNDb250ZW50IjogWyJ0ZCBzcGFuIHtcclxuICBjb2xvcjogI2ZmMDAwMDtcclxuICBwYWRkaW5nLWlubGluZS1zdGFydDogMTBweDtcclxufVxyXG5cclxudGQge1xyXG4gIHBhZGRpbmc6IDAgIWltcG9ydGFudDtcclxufVxyXG5cclxudGQgaW1nIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufSJdLAogICJtYXBwaW5ncyI6ICI7QUFBQTtBQUNFO0FBQ0E7QUFBQTtBQUdGO0FBQ0U7QUFBQTtBQUdGO0FBQ0U7QUFBQTsiLAogICJuYW1lcyI6IFtdCn0K */

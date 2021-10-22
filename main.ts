@@ -1,4 +1,11 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, moment  } from 'obsidian';
+
+"use strict";
+ 	function changeAll() {
+ 		wrapSpan(
+ 			document.getElementsByTagName('body')[0], 0
+ 		);
+ 	}
 
 interface MyPluginSettings {
 	mySetting: string;
@@ -78,8 +85,26 @@ export default class MyPlugin extends Plugin {
 		});
 
 		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-	}
+		//this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+        
+        changeAll();
+
+        //this.registerInterval(
+        //    window.setInterval(() => changeAll(), 1000)
+        //  );
+
+        this.registerEvent(this.app.vault.on('modify', () => {
+            changeAll();
+        }));
+
+        this.registerEvent(this.app.workspace.on('file-open', () => {
+            changeAll();
+        }));
+
+        this.registerEvent(this.app.metadataCache.on('resolved', () => {
+            changeAll();
+        }))
+    }
 
 	onunload() {
         console.log('unloading plugin')
@@ -137,4 +162,25 @@ class SampleSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 	}
+}
+
+
+/**  Code from: https://gist.github.com/RachelVeer/a6f7104e03c8f389c197705a8573f913
+ 	 * Wrap a span element around all text nodes.
+ 	 **/
+ function wrapSpan(node: any, index: number) {
+    if(node.nodeName === '#text') {
+        var text = node.textContent;
+        var s = document.createElement('span');
+
+        s.textContent = text;
+        node.parentElement.insertBefore(s, node.parentElement.childNodes[index]);
+        node.remove();
+        
+    } else {
+        var length = node.childNodes.length;
+        // childNodes is a collection, not an array. :-/
+        for(var i = 0; i < length; i++)
+            wrapSpan(node.childNodes[i], i);
+    }
 }
