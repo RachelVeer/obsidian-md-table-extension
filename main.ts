@@ -14,10 +14,15 @@ export default class MyPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
+        console.log('loading plugin');
+
+        const item = this.addStatusBarItem();
+        item.createEl("span", { text: "Hello from the status bar 😎"});
+
 		// This creates an icon in the left ribbon.
 		let ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
+			new Notice('Welcome, Mavera extends its greetings!');
 		});
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');
@@ -77,7 +82,7 @@ export default class MyPlugin extends Plugin {
 	}
 
 	onunload() {
-
+        console.log('unloading plugin')
 	}
 
 	async loadSettings() {
